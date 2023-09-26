@@ -5,6 +5,16 @@ REPO_URL="https://github.com/abdellahi-brahim/gcc.git"
 TARBALL_NAME="gcc-10.1.0.tar.gz"
 DESTINATION_PATH="${HOME}/opt"
 
+# Function to extract tarball based on its file type
+extract_tarball() {
+    case $1 in
+        *.tar.bz2) tar xjf $1 -C "$DESTINATION_PATH" ;;
+        *.tar.gz) tar xzf $1 -C "$DESTINATION_PATH" ;;
+        *.tar.xz) tar xJf $1 -C "$DESTINATION_PATH" ;;
+        *) echo "Unknown tarball type: $1"; exit 1 ;;
+    esac
+}
+
 # Clone the repository
 git clone "$REPO_URL" gcc_repo
 cd gcc_repo
@@ -16,7 +26,7 @@ if [ ! -f "$TARBALL_NAME" ]; then
 fi
 
 # Extract the tarball
-tar -xzvf "$TARBALL_NAME" -C "$DESTINATION_PATH"
+extract_tarball "$TARBALL_NAME"
 
 # Activate the new GCC
 source "${DESTINATION_PATH}/gcc-10.1.0/activate"
@@ -29,4 +39,3 @@ cd ..
 rm -rf gcc_repo
 
 echo "GCC activation complete!"
-
