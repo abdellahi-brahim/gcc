@@ -44,8 +44,8 @@ git lfs pull
 # Extract the tarball
 sudo tar xzf "$TARBALL_NAME" -C "$DESTINATION_PATH"
 
-# Activate the new GCC
-source "${DESTINATION_PATH}/gcc-10.1.0/activate"
+# Temporarily add the new GCC's bin directory to the PATH
+export PATH="${DESTINATION_PATH}/gcc-10.1.0/bin:$PATH"
 
 # Print GCC version to verify
 gcc --version
