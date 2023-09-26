@@ -44,13 +44,16 @@ git lfs pull
 # Extract the tarball
 sudo tar xzf "$TARBALL_NAME" -C "$DESTINATION_PATH"
 
+# Create the activate script
+echo '# source this script to bring gcc 10.1.0 into your environment' > ${DESTINATION_PATH}/gcc-10.1.0/activate
+echo 'export PATH=/opt/gcc-10.1.0/bin:$PATH' >> ${DESTINATION_PATH}/gcc-10.1.0/activate
+echo 'export LD_LIBRARY_PATH=/opt/gcc-10.1.0/lib:/opt/gcc-10.1.0/lib64:$LD_LIBRARY_PATH' >> ${DESTINATION_PATH}/gcc-10.1.0/activate
+echo 'export MANPATH=/opt/gcc-10.1.0/share/man:$MANPATH' >> ${DESTINATION_PATH}/gcc-10.1.0/activate
+echo 'export INFOPATH=/opt/gcc-10.1.0/share/info:$INFOPATH' >> ${DESTINATION_PATH}/gcc-10.1.0/activate
+
 # Print instructions for the user
 echo "To activate the new GCC, run the following command:"
 echo "source ${DESTINATION_PATH}/gcc-10.1.0/activate"
-
-# Print GCC version to verify (this will use the system's GCC, not the new one)
-which gcc
-gcc --version
 
 # Cleanup: Remove the cloned repository
 cd ..
