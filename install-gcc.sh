@@ -8,10 +8,16 @@ DESTINATION_PATH="${HOME}/opt"
 # Function to extract tarball based on its file type
 extract_tarball() {
     case $1 in
-        *.tar.bz2) tar xjf $1 -C "$DESTINATION_PATH" ;;
-        *.tar.gz) tar xzf $1 -C "$DESTINATION_PATH" ;;
-        *.tar.xz) tar xJf $1 -C "$DESTINATION_PATH" ;;
-        *) echo "Unknown tarball type: $1"; exit 1 ;;
+        *.tar.bz2) 
+            tar xjf $1 -C "$DESTINATION_PATH" && return 0 ;;
+        *.tar.gz) 
+            tar xzf $1 -C "$DESTINATION_PATH" && return 0 ;;
+        *.tar.xz) 
+            tar xJf $1 -C "$DESTINATION_PATH" && return 0 ;;
+        *.tar) 
+            tar xf $1 -C "$DESTINATION_PATH" && return 0 ;;
+        *) 
+            echo "Unknown tarball type: $1"; exit 1 ;;
     esac
 }
 
