@@ -1,0 +1,5 @@
+# source this script to bring gcc 10.1.0 into your environment
+export PATH=/root/opt/gcc-10.1.0/bin:$PATH
+export LD_LIBRARY_PATH=/root/opt/gcc-10.1.0/lib:/root/opt/gcc-10.1.0/lib64:$LD_LIBRARY_PATH
+export MANPATH=/root/opt/gcc-10.1.0/share/man:$MANPATH
+export INFOPATH=/root/opt/gcc-10.1.0/share/info:$INFOPATH
